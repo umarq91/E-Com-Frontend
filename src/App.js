@@ -11,6 +11,7 @@ import {
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import CartPage from './pages/CartPage';
+import CheckOutPage from './pages/CheckOutPage';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/cart",
     element: <CartPage/>,
+  },
+  {
+    path: "/checkout",
+    element: <CheckOutPage/>,
   },
 ]);
 function App() {

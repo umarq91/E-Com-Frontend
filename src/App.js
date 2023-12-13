@@ -7,38 +7,42 @@ import {
   RouterProvider,
   Route,
   Link,
+  BrowserRouter,
+  Routes,
 } from "react-router-dom";
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import CartPage from './pages/CartPage';
 import CheckOutPage from './pages/CheckOutPage';
+import ProductDetailPage from './pages/ProductDetailPage';
+import Navbar from './features/navbar/Navbar';
+import SignInPage from './pages/SignUpPage';
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <HomePage/>,
-  },
-  {
-    path: "/signin",
-    element: <LoginPage/>,
-  },
-  {
-    path: "/signup",
-    element: <SignUpPage/>,
-  },
-  {
-    path: "/cart",
-    element: <CartPage/>,
-  },
-  {
-    path: "/checkout",
-    element: <CheckOutPage/>,
-  },
-]);
+
 function App() {
   return (
     <div className="App">
- <RouterProvider router={router} />
+   
+
+ <BrowserRouter>
+ <Navbar>
+
+ <Routes>
+    <Route path='/' element={<HomePage/>}/> 
+    <Route path='/signin' element={<SignInPage/>}/> 
+    <Route path='/signup' element={<SignUpPage/>}/> 
+    <Route path='/cart' element={<CartPage/>}/> 
+    <Route path='/checkout' element={<CheckOutPage/>}/> 
+    <Route path='/product-detail' element={<ProductDetailPage/>}/> 
+ 
+
+
+
+ </Routes>
+
+ </Navbar>
+ </BrowserRouter>
+
     </div>
   );
 }

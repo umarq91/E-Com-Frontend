@@ -9,9 +9,9 @@ import { Link } from 'react-router-dom';
 
 
 const sortOptions = [
-  { name: 'Best Rating', href: '#', current: false },
-  { name: 'Price: Low to High', href: '#', current: false },
-  { name: 'Price: High to Low', href: '#', current: false },
+  { name: 'Best Rating', sort:'rating',order:'desc', current: false },
+  { name: 'Price: Low to High', sort:'price',order:'asc',  current: false },
+  { name: 'Price: High to Low', sort:'price',order:'desc',  current: false },
 ]
 
 const filters = [
@@ -222,6 +222,12 @@ const handleFilter = (e,section,option)=>{
   dispatch(fetchProductsByFilterAsync(newfilter))
 }
 
+const handleSort = (e,option)=>{
+  const newfilter = {...filter,_sort:option.sort,_order:option.order}
+  setFilter(newfilter)
+  dispatch(fetchProductsByFilterAsync(newfilter))
+}
+
 
   useEffect(()=>{
 
@@ -380,8 +386,8 @@ const handleFilter = (e,section,option)=>{
                           {sortOptions.map((option) => (
                             <Menu.Item key={option.name}>
                               {({ active }) => (
-                                <a
-                                  href={option.href}
+                                <p
+                                 onClick={(e)=>handleSort(e,option)}
                                   className={classNames(
                                     option.current
                                       ? "font-medium text-gray-900"
@@ -391,7 +397,7 @@ const handleFilter = (e,section,option)=>{
                                   )}
                                 >
                                   {option.name}
-                                </a>
+                                </p>
                               )}
                             </Menu.Item>
                           ))}
@@ -427,6 +433,7 @@ const handleFilter = (e,section,option)=>{
                 </h2>
 
                 <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+
                   {/* Filters */}
                   <form className="hidden lg:block">
                     <h3 className="sr-only">Categories</h3>
@@ -513,13 +520,13 @@ const handleFilter = (e,section,option)=>{
                                 <div>
                                   
                                   <h3 className="text-sm  text-gray-700">
-                                    <a href={product.href}>
+                                    <div>
                                       <span
                                         aria-hidden="true"
                                         className="absolute inset-0"
                                       />
                                       {product.title}
-                                    </a>
+                                    </div>
                                   </h3>
 
                                     <StarIcon className='h-4 w-4 inline align-bottom'/>

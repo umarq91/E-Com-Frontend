@@ -10,8 +10,15 @@ export  function fetchAllProducts() {
   );
 }
 
-export  function fetchProductsByFilter(filter,sort) {
+export  function fetchProductsByFilter(filter,sort,pagination) {
   return new Promise(async(resolve) =>{
+//FILTER = {"category":["smartphones","laptops"]}
+//sort = {_sort="price",order="desc"}
+//pagination = {"page=1,_limit=10}
+
+
+
+
     let queryString ='';
     // Kam chalane k liye filhal doing this ,
     // we will change this from single to array after 
@@ -28,12 +35,16 @@ for (const key in sort){
   queryString+=`${key}=${sort[key]}&`
 
 }
+for (const key in pagination){
+  queryString+=`${key}=${pagination[key]}&`
 
-
+}
     // Todo : we will mot hard code server URl Error
     const res = await fetch('http://localhost:8080/products?'+queryString)
     const data = await res.json();
-    resolve({data})
+    const totalItems = await res.headers.get('X-total-Count');
+
+    resolve({data:{products:data,totalItems:+totalItems}})
 
   }
   );

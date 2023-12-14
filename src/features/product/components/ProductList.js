@@ -215,30 +215,39 @@ export default function ProductList() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const products = useSelector((state) => state.product.products);
   const [filter, setFilter] = useState({});
+  const [sort, setSort] = useState({});
+
 
   const handleFilter = (e, section, option) => {
     const newfilter = { ...filter};
   
     // todo  : on server we will supoort multiple categories
     if(e.target.checked){
-      newfilter[section.id] = option.value;
+      if(newfilter[section.id]){
+        // section.id is category array here
+        newfilter[section.id].push(option.value);
+      }else{
+        newfilter[section.id]=[option.value  ]
+      }
     }else{
-      delete newfilter[section.id]
+     const index =newfilter[section.id].findIndex(el=>el==option.value)
+     newfilter[section.id].splice(index,1)
     }
-    console.log(newfilter);
+    console.log({newfilter});
     setFilter(newfilter);
-    dispatch(fetchProductsByFilterAsync(newfilter));
+  
   };
 
   const handleSort = (e, option) => {
-    const newfilter = { ...filter, _sort: option.sort, _order: option.order };
-    setFilter(newfilter);
+    const sort = {  _sort: option.sort, _order: option.order };
+    setSort(sort);
+    console.log({sort});
    
   };
 
   useEffect(() => {
-    dispatch(fetchProductsByFilterAsync(filter));
-  }, [dispatch,filter]);
+    dispatch(fetchProductsByFilterAsync({filter,sort}));
+  }, [dispatch,filter,sort]);
 
   return (
     <div>
@@ -246,7 +255,7 @@ export default function ProductList() {
         <div className="bg-white">
           <div>
             {/* Mobile filter dialog */}
-           <MobileFilters mobileFiltersOpen={mobileFiltersOpen} filters={filters} handleFilter={handleFilter}/>
+           <MobileFilters mobileFiltersOpen={mobileFiltersOpen} setMobileFiltersOpen={setMobileFiltersOpen} filters={filters} handleFilter={handleFilter}/>
 
             <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-16">
@@ -479,11 +488,11 @@ function ProductsGrid({products}){
 function MobileFilters({mobileFiltersOpen,setMobileFiltersOpen,filters,handleFilter}){
   return (
     <Transition.Root show={mobileFiltersOpen} as={Fragment}>
-    <Dialog
-      as="div"
-      className="relative z-40 lg:hidden"
-      onClose={setMobileFiltersOpen}
-    >
+   <Dialog
+  as="div"
+  className="relative z-40 lg:hidden"
+  onClose={()=>setMobileFiltersOpen(false)}
+>
       <Transition.Child
         as={Fragment}
         enter="transition-opacity ease-linear duration-300"

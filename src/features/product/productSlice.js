@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchAllProducts,fetchBrands, fetchCategories, fetchProductsByFilter } from './productApi';
+import { fetchAllProducts,fetchBrands, fetchCategories, fetchProductById, fetchProductsByFilter } from './productApi';
 
 const initialState = {
   products: [],
   brands:[],
   categories:[],
   status: 'idle',
-  totalItems:0
+  totalItems:0,
+  selectedProduct:null
 };
 export const fetchAllProductsAsync = createAsyncThunk(
   'product/fetchAllProducts',
@@ -30,7 +31,7 @@ export const fetchCategoriesAsync = createAsyncThunk(
   'product/fetchcategories',
   async () => {
     const response = await fetchCategories();
-    console.log(response);
+  
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
@@ -44,6 +45,15 @@ export const fetchBrandsAsync = createAsyncThunk(
   }
 );
 
+export const fetchSelectedProductAsync = createAsyncThunk(
+  'product/fetchProductByid',
+  async (id) => {
+    const response = await fetchProductById(id);
+   
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
 export const productSlice = createSlice({
   name: 'product',
   initialState,
@@ -82,7 +92,18 @@ export const productSlice = createSlice({
         state.status = 'idle';
         state.brands = action.payload;
      
-      });
+      })
+
+      .addCase(fetchSelectedProductAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchSelectedProductAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.selectedProduct = action.payload;
+     
+      })
+
+      
   },
 });
 
@@ -93,6 +114,8 @@ export const selectAllProducts = (state) => state.product.products;
 export const selectCategories = (state) => state.product.categories;
 export const selectBrands = (state) => state.product.brands;
 export const selectTotalItems = (state) => state.product.totalItems;
+export const selectProductbyId = (state) => state.product.selectedProduct;
+
 
 
 

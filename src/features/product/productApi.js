@@ -9,6 +9,16 @@ export  function fetchAllProducts() {
   }
   );
 }
+export  function fetchProductById(id) {
+  return new Promise(async(resolve) =>{
+    // Todo : we will mot hard code server URl Error
+    const res = await fetch('http://localhost:8080/products/'+id)
+    const data =await res.json();
+    resolve({data})
+
+  }
+  );
+}
 
 export  function fetchProductsByFilter(filter,sort,pagination) {
   return new Promise(async (resolve) => {

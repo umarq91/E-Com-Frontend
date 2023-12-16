@@ -16,7 +16,7 @@ import CartPage from './pages/CartPage';
 import CheckOutPage from './pages/CheckOutPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import Navbar from './features/navbar/Navbar';
-import SignInPage from './pages/SignUpPage';
+
 
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
 
  <Routes>
     <Route path='/' element={<HomePage/>}/> 
-    <Route path='/signin' element={<SignInPage/>}/> 
+    <Route path='/login' element={<LoginPage/>}/> 
     <Route path='/signup' element={<SignUpPage/>}/> 
     <Route path='/cart' element={<CartPage/>}/> 
     <Route path='/checkout' element={<CheckOutPage/>}/> 

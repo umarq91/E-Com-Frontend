@@ -1,7 +1,7 @@
 import React from 'react'
 import SignUp from '../features/auth/SignUp'
 
-const SignInPage = () => {
+const SignUpPage = () => {
   return (
     <div>
         <SignUp/>
@@ -9,4 +9,4 @@ const SignInPage = () => {
   )
 }
 
-export default SignInPage
+export default SignUpPage

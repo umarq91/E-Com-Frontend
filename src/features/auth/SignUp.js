@@ -1,17 +1,17 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
  import { useForm } from "react-hook-form"
 import { selectLoggedInUser ,createUserAsync } from './AuthSlice';
- 
+
 export default function SignUp() {
   const dispatch = useDispatch();
   const {register,handleSubmit,formState: { errors }} = useForm()
-
   const user = useSelector(selectLoggedInUser)
-
-
+  
   return (
+    <>
+   { user && <Navigate to='/' replace={true}/>}
     <div>
       <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -132,5 +132,6 @@ export default function SignUp() {
         </div>
       </div>
     </div>
+    </>
   );
 }

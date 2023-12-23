@@ -1,45 +1,61 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchCount } from './cartApi';
+import { addToCart, fetchCartItemsById, fetchCount } from './cartApi';
 
 const initialState = {
   value: 0,
-  status: 'idle',
+  items: [],
 };
-export const incrementAsync = createAsyncThunk(
-  'counter/fetchCount',
-  async (amount) => {
-    const response = await fetchCount(amount);
+export const addtoCartAsync = createAsyncThunk(
+  'cart/addToCart',
+  async (item) => {
+    const response = await addToCart(item);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
 
-export const counterSlice = createSlice({
-  name: 'counter',
+export const fetchCartItemsByIdAsync = createAsyncThunk(
+  'cart/fetchCartItems',
+  async (item) => {
+    const response = await fetchCartItemsById(item);
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
+
+export const cartSlice = createSlice({
+  name: 'cart',
   initialState,
   reducers: {
     increment: (state) => {
-    
       state.value += 1;
     },
   },
   
   extraReducers: (builder) => {
     builder
-      .addCase(incrementAsync.pending, (state) => {
+      .addCase(addtoCartAsync.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(incrementAsync.fulfilled, (state, action) => {
+      .addCase(addtoCartAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.value += action.payload;
+        state.items.push(action.payload);
+      })
+
+      .addCase(fetchCartItemsByIdAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchCartItemsByIdAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.items = action.payload;
       });
   },
 });
 
-export const { increment } = counterSlice.actions;
+
 
 
 export const selectCount = (state) => state.counter.value;
 
 
-export default counterSlice.reducer;
+export default cartSlice.reducer;

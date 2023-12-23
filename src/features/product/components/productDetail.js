@@ -3,7 +3,9 @@ import { StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSelectedProductAsync, selectProductbyId } from "../productSlice";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { addtoCartAsync } from "../../Cart/cartSlice";
+import { selectLoggedInUser } from "../../auth/AuthSlice";
 
 const colors = [
   { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
@@ -39,7 +41,7 @@ export default function ProductDetail() {
   const dispatch = useDispatch();
   const product = useSelector(selectProductbyId);
   const params = useParams();
-
+const user =useSelector(selectLoggedInUser)
   const breadcrumbs = [
     { id: 1, name: product?.title, category: product?.category, href: "/" },
   ];
@@ -48,6 +50,13 @@ export default function ProductDetail() {
     dispatch(fetchSelectedProductAsync(params.id));
   }, [dispatch, params.id]);
 
+console.log(user);
+  const hanleSubmit=(e)=>{
+    e.preventDefault();
+ 
+     dispatch(addtoCartAsync({...product,quanity:1,user:user.id}))
+
+  }
   return (
     <div className="bg-white">
       {product ? (
@@ -60,12 +69,12 @@ export default function ProductDetail() {
                   role="list"
                   className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
                 >
-                  <a
-                          href={'/'}
+                  <Link
+                          to={'/'}
                           className="mr-2 text-sm font-medium text-gray-500"
                         >
                           {'products'}
-                        </a>
+                        </Link>
 
                         <svg
                           width={16}
@@ -80,12 +89,12 @@ export default function ProductDetail() {
                   {breadcrumbs.map((breadcrumb) => (
                     <li key={breadcrumb.id}>
                       <div className="flex items-center">
-                        <a
-                          href={breadcrumb.href}
+                        <Link
+                          to={breadcrumb.href}
                           className="mr-2 text-sm font-medium text-gray-500"
                         >
                           {breadcrumb.category}
-                        </a>
+                        </Link>
 
                         <svg
                           width={16}
@@ -101,13 +110,13 @@ export default function ProductDetail() {
                     </li>
                   ))}
                   <li className="text-sm">
-                    <a
-                      href={product.href}
+                    <Link
+                      to={product.href}
                       aria-current="page"
                       className="font-medium text-gray-900 hover:text-gray-600"
                     >
                       {product.title}
-                    </a>
+                    </Link>
                   </li>
                 </ol>
               </nav>
@@ -315,6 +324,7 @@ export default function ProductDetail() {
                       
                     <button
                       type="submit"
+                      onClick={hanleSubmit}
                       className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
                       Add to Cart

@@ -54,7 +54,7 @@ console.log(user);
   const hanleSubmit=(e)=>{
     e.preventDefault();
  
-     dispatch(addtoCartAsync({...product,quanity:1,user:user.id}))
+     dispatch(addtoCartAsync({...product,quantity:1,user:user.id}))
 
   }
   return (

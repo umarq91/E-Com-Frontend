@@ -16,6 +16,7 @@ import CartPage from './pages/CartPage';
 import CheckOutPage from './pages/CheckOutPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import Navbar from './features/navbar/Navbar';
+import ProtectedRoutes from './app/ProtectedRoutes';
 
 
 
@@ -32,6 +33,7 @@ function App() {
     <Route path='/login' element={<LoginPage/>}/> 
     <Route path='/signup' element={<SignUpPage/>}/> 
     <Route path='/cart' element={<CartPage/>}/> 
+
     <Route path='/checkout' element={<CheckOutPage/>}/> 
     <Route path='/product-detail/:id' element={<ProductDetailPage/>}/> 
  

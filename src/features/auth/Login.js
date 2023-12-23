@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { useForm } from "react-hook-form";
+import { checkUserAsync, selectLoggedInUser } from './AuthSlice';
 
 export default function Login() {
   const dispatch = useDispatch();
+  const {register,handleSubmit,formState: { errors }} = useForm();
 
+  // error checking in frontend for now  
+  const error =  useSelector((state)=>state.auth.error)
+const user = useSelector(selectLoggedInUser)
 
+  
   return (
+    <>
+    { user && <Navigate to='/' replace={true}/>}
     <div>
       <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -14,14 +23,17 @@ export default function Login() {
             class="mx-auto h-10 w-auto"
             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
             alt="Your Company"
-          />
+            />
           <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Sign in to your account
           </h2>
         </div>
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form class="space-y-6" action="#" method="POST">
+        <form noValidate class="space-y-6" onSubmit={handleSubmit((data)=>{
+          dispatch(checkUserAsync({email:data.email,password:data.password}))
+          })}>
+         
             <div>
               <label
                 for="email"
@@ -30,14 +42,17 @@ export default function Login() {
                 Email address
               </label>
               <div class="mt-2">
-                <input
+              <input
                   id="email"
-                  name="email"
+                 {...register("email" , { required: 'email is required' ,
+                 pattern:{value:/\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/gi , message:'email is not valid' } 
+                })}
                   type="email"
                   autocomplete="email"
                   required
                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {errors.email && <p className='text-red-500'> {errors?.email.message}  </p>}
               </div>
             </div>
 
@@ -59,14 +74,16 @@ export default function Login() {
                 </div>
               </div>
               <div class="mt-2">
-                <input
+              <input
                   id="password"
-                  name="password"
+                  {...register("password", { required: 'password is required' })}
                   type="password"
                   autocomplete="current-password"
                   required
                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {error?.message && <p className='text-red-500'> {error?.message}  </p>}
+
               </div>
             </div>
 
@@ -92,5 +109,6 @@ export default function Login() {
         </div>
       </div>
     </div>
+    </>
   );
 }

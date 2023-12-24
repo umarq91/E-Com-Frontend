@@ -50,13 +50,15 @@ const user =useSelector(selectLoggedInUser)
     dispatch(fetchSelectedProductAsync(params.id));
   }, [dispatch, params.id]);
 
-console.log(user);
-  const hanleSubmit=(e)=>{
-    e.preventDefault();
- 
-     dispatch(addtoCartAsync({...product,quantity:1,user:user.id}))
 
-  }
+  const handleCart = (e) => {
+    e.preventDefault();
+    //  Remove id if the product is already added otherwise it will mix and give the error of duplicate id of product
+    const newItem = { ...product, quantity: 1, user: user.id };
+    delete newItem['id'];
+    dispatch(addtoCartAsync(newItem));
+  };
+
   return (
     <div className="bg-white">
       {product ? (
@@ -324,7 +326,7 @@ console.log(user);
                       
                     <button
                       type="submit"
-                      onClick={hanleSubmit}
+                      onClick={handleCart}
                       className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
                       Add to Cart

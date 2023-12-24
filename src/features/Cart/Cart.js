@@ -3,20 +3,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import {removefromCartAsync, selectItems, updateCartAsync} from "../Cart/cartSlice"
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { Link } from 'react-router-dom';
+import { Link , Navigate } from 'react-router-dom';
 
 
 
 export default function Cart() {
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(true)
+
   const items = useSelector(selectItems)
   const totalAmount = items.reduce((amount,item)=> item.price * item.quantity+amount,0)
   const totalItems = items.reduce((total,item)=> item.quantity+total,0)
 
 
   const handleQuantity=(e,product)=>{
- dispatch(updateCartAsync({...product,quantity: +e.target.value}))
+   dispatch(updateCartAsync({...product,quantity: +e.target.value}))
   }
 
   const handleRemove = (productId) =>{
@@ -24,6 +24,7 @@ export default function Cart() {
   }
   return (
 <>
+{!items.length && <Navigate to={'/'} replace={true} />}
 <div className="mx-auto max-w-7xl mt-12  bg-white px-4 sm:px-6 lg:px-8">
 
       <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
@@ -115,7 +116,6 @@ export default function Cart() {
                           <button
                             type="button"
                             className="font-medium m-2 text-indigo-600 hover:text-indigo-500"
-                            onClick={() => setOpen(false)}
                           >
                             Continue Shopping
                             <span aria-hidden="true"> &rarr;</span>

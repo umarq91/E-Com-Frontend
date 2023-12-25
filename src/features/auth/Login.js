@@ -31,7 +31,7 @@ const user = useSelector(selectLoggedInUser)
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form noValidate class="space-y-6" onSubmit={handleSubmit((data)=>{
-          dispatch(checkUserAsync({email:data.email,password:data.password}))
+          dispatch(checkUserAsync({email:data.email,password:data.password }))
           })}>
          
             <div>

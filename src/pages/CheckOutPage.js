@@ -3,28 +3,12 @@ import Cart from "../features/Cart/Cart";
 import { Link, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { removefromCartAsync, selectItems, updateCartAsync } from "../features/Cart/cartSlice";
-import {selectLoggedInUser} from "../features/auth/AuthSlice"
+import {selectLoggedInUser, updateUserAsync} from "../features/auth/AuthSlice"
+import {useForm} from "react-hook-form"
 
 
 
-const address =[
-    {
-        name:'john doe',
-        street:'15th Main ',
-        city:'Lahore',
-        pinCode:54023,
-        state:'Pubjab',
-        phone:+92-3120991787
-    },
-    {
-        name:'john Ali',
-        street:'17th Main ',
-        city:'karachi',
-        pinCode:54023,
-        state:'KP',
-        phone:'03120991676'
-    }
-]
+
 
 
 
@@ -35,7 +19,9 @@ function CheckOutPage() {
   const totalAmount = items.reduce((amount,item)=> item.price * item.quantity+amount,0)
   const totalItems = items.reduce((total,item)=> item.quantity+total,0)
   const user = useSelector(selectLoggedInUser)
-  const [open, setOpen] = useState(true)
+  const {register,handleSubmit,reset , formState: { errors }} = useForm();
+
+
 
   const handleQuantity=(e,product)=>{
     dispatch(updateCartAsync({...product,quantity: +e.target.value}))
@@ -54,7 +40,13 @@ function CheckOutPage() {
         <div className="grid grid-cols-1 gap-x-8  gap-y-10 lg:grid-cols-5 ">
           {/* Left Side */}
           <div className="lg:col-span-3">
-            <form className="bg-white px-5 py-5 mt-12">
+            <form className="bg-white px-5 py-5 mt-12 " noValidate onSubmit={handleSubmit((data)=>{
+           
+          dispatch(
+        updateUserAsync({...user,adddresses:[...user.adddresses,data]})
+            );
+            reset()
+            })}>
               <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
                   <h2 className="text-2xl  font-bold leading-7 text-gray-900">
@@ -65,43 +57,46 @@ function CheckOutPage() {
                   </p>
 
                   <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+       
+
                     <div className="sm:col-span-3">
                       <label
-                        htmlFor="first-name"
+                        htmlFor="name"
                         className="block text-sm font-medium leading-6 text-gray-900"
                       >
-                        First name
+                       Full name
                       </label>
                       <div className="mt-2">
                         <input
                           type="text"
-                          name="first-name"
-                          id="first-name"
-                          autoComplete="given-name"
+                          {...register('name',{required:'name is required'})}
+                          id="name"
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
                       </div>
                     </div>
 
-                    <div className="sm:col-span-3">
+
+
+                    <div className="sm:col-span-2">
                       <label
                         htmlFor="last-name"
                         className="block text-sm font-medium leading-6 text-gray-900"
                       >
-                        Last name
+                       Phone Number
                       </label>
                       <div className="mt-2">
                         <input
                           type="text"
-                          name="last-name"
-                          id="last-name"
-                          autoComplete="family-name"
+                          {...register('phone',{required:'phone Number is required'})}
+                          id="phone"
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
                       </div>
                     </div>
 
-                    <div className="sm:col-span-4">
+
+                    <div className="sm:col-span-5">
                       <label
                         htmlFor="email"
                         className="block text-sm font-medium leading-6 text-gray-900"
@@ -111,9 +106,11 @@ function CheckOutPage() {
                       <div className="mt-2">
                         <input
                           id="email"
-                          name="email"
+                          {...register('email',{required:'email is required'})}
                           type="email"
                           autoComplete="email"
+                        placeholder="Email (Please Enter for confirmation & Shipping Updates)"
+
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
                       </div>
@@ -130,33 +127,51 @@ function CheckOutPage() {
                         <select
                           id="country"
                           name="country"
-                          autoComplete="country-name"
+                          {...register('country')}
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                         >
-                          <option>United States</option>
-                          <option>Canada</option>
-                          <option>Mexico</option>
+                          <option>Pakistan</option>
                         </select>
                       </div>
                     </div>
 
                     <div className="col-span-full">
                       <label
-                        htmlFor="street-address"
+                        htmlFor="address"
                         className="block text-sm font-medium leading-6 text-gray-900"
                       >
-                        Street address
+                        Full  address
                       </label>
                       <div className="mt-2">
                         <input
                           type="text"
-                          name="street-address"
-                          id="street-address"
-                          autoComplete="street-address"
+                          {...register('address',{required:'address is required'})}
+                          
+                          id="address"
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
                       </div>
                     </div>
+
+                    <div className="sm:col-span-5">
+                      <label
+                        htmlFor="region"
+                        className="block text-sm font-medium leading-6 text-gray-900"
+                      >
+                        Apartment / House no 
+                      </label>
+                      <div className="mt-2">
+                        <input
+                          type="text"
+                          {...register('apartment')}
+                          id="apartment"
+                          placeholder="Apartment , street , suite etc (optional)"
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        />
+                      </div>
+                    </div>
+
+
 
                     <div className="sm:col-span-2 sm:col-start-1">
                       <label
@@ -168,32 +183,14 @@ function CheckOutPage() {
                       <div className="mt-2">
                         <input
                           type="text"
-                          name="city"
+                          {...register('city',{required:'city is required'})}
                           id="city"
-                          autoComplete="address-level2"
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
                       </div>
                     </div>
 
-                    <div className="sm:col-span-2">
-                      <label
-                        htmlFor="region"
-                        className="block text-sm font-medium leading-6 text-gray-900"
-                      >
-                        State / Province
-                      </label>
-                      <div className="mt-2">
-                        <input
-                          type="text"
-                          name="region"
-                          id="region"
-                          autoComplete="address-level1"
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        />
-                      </div>
-                    </div>
-
+                 
                     <div className="sm:col-span-2">
                       <label
                         htmlFor="postal-code"
@@ -204,9 +201,8 @@ function CheckOutPage() {
                       <div className="mt-2">
                         <input
                           type="text"
-                          name="postal-code"
+                          {...register('zipCode',{required:'postal code is required'})}
                           id="postal-code"
-                          autoComplete="postal-code"
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
                       </div>
@@ -239,9 +235,10 @@ function CheckOutPage() {
                   </p>
 
                   <ul role="list" >
-      {address.map((address) => (
-        <li key={address.email} className="flex justify-between p-4 gap-x-6 py-5 border-solid border-2 border-gray-200">
+      {  user?.adddresses.map((address,index) => (
+        <li key={index} className="flex justify-between p-4 gap-x-6 py-5 border-solid border-2 border-gray-200">
           <div className="flex min-w-0 gap-x-4 ">
+         { console.log(address)}
           <input
                            
                             name="address"
@@ -251,7 +248,7 @@ function CheckOutPage() {
            
             <div className="min-w-0 flex-auto">
               <p className="text-sm font-semibold leading-6 text-gray-900">{address.name}</p>
-              <p className="mt-1 truncate text-xs leading-5 text-gray-500">{address.street}</p>
+              <p className="mt-1 truncate text-xs leading-5 text-gray-500">{address.address}</p>
             </div>
           </div>
           <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
@@ -260,6 +257,7 @@ function CheckOutPage() {
               <p className="mt-1 text-xs leading-5 text-gray-500">
                 {address.city}
               </p>
+              <p className="text-sm leading-6 text-gray-900"> {address.email}</p>
             
           </div>
         </li>
@@ -326,7 +324,7 @@ function CheckOutPage() {
 <h1 className='text-4xl font-bold tracking-tight  text-gray-900'> Cart</h1>
 
                   <div className="flow-root">
-                    <ul role="list" className="-my-6 divide-y divide-gray-200">
+                    <ul role="list" className="my-6 divide-y divide-gray-200">
                       {items?.map((product) => (
                         <li key={product.id} className="flex py-2">
                           <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
@@ -411,7 +409,7 @@ function CheckOutPage() {
                     <button
                       type="button"
                       className="font-medium m-2 text-indigo-600 hover:text-indigo-500"
-                      onClick={() => setOpen(false)}
+                     
                     >
                       Continue Shopping
                       <span aria-hidden="true"> &rarr;</span>

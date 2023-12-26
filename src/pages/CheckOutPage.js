@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removefromCartAsync, selectItems, updateCartAsync } from "../features/Cart/cartSlice";
 import {selectLoggedInUser, updateUserAsync} from "../features/auth/AuthSlice"
 import {useForm} from "react-hook-form"
-import { createOrderAsync } from "../features/order/orderSlice";
+import { createOrderAsync, selectCurrentOrder } from "../features/order/orderSlice";
 
 
 
@@ -23,9 +23,9 @@ function CheckOutPage() {
   const totalAmount = items.reduce((amount, item) => item.price * item.quantity + amount,0);
   const totalItems = items.reduce((total, item) => item.quantity + total, 0);
   const user = useSelector(selectLoggedInUser);
-
   const {register,handleSubmit,reset,formState: { errors },} = useForm();
 
+  const currentOrder = useSelector(selectCurrentOrder)
 
 
   const handleQuantity = (e, product) => {
@@ -38,23 +38,33 @@ function CheckOutPage() {
 
      const handleAddress = (index) => {
        // Since e can't pass object in html
-       setSelectedAddress(user.adddresses[index]);
+       setSelectedAddress(user.addresses[index]);
      };
 
      const handlePaymentMethod = (e) => {
        setPaymentMethod(e.target.value);
      };
 
-     const handleOrder = ()=>{
-     const order = {items , user , totalAmount , totalItems , paymentMethod , selectedAddress}
-       dispatch(createOrderAsync(order))
-      // Todo : after order redirect to order success , remove items from cart  , on server change the number of stocs too..
-     }
+     const handleOrder = () => {
+       const order = {
+         items,
+         user,
+         totalAmount,
+         totalItems,
+         paymentMethod,
+         selectedAddress,
+         status:'pending' // others can be dispatched , received 
+       };
+       dispatch(createOrderAsync(order));
+       // Todo : after order redirect to order success , remove items from cart  , on server change the number of stocs too..
+     };
 
 
     return (
       <>
        {!items.length && <Navigate to={'/'} replace={true} />}
+       {currentOrder && <Navigate to={'/order-success/'+currentOrder.id} replace={true} />}
+
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8  gap-y-10 lg:grid-cols-5 ">
           {/* Left Side */}
@@ -62,7 +72,7 @@ function CheckOutPage() {
             <form className="bg-white px-5 py-5 mt-12 " noValidate onSubmit={handleSubmit((data)=>{
            
           dispatch(
-        updateUserAsync({...user,adddresses:[...user.adddresses,data]})
+        updateUserAsync({...user,addresses:[...user.addresses,data]})
             );
             reset()
             })}>
@@ -254,7 +264,7 @@ function CheckOutPage() {
                   </p>
 
                   <ul role="list" >
-      {  user?.adddresses.map((address,index) => (
+      { user.addresses.map((address,index) => (
         <li key={index} className="flex justify-between p-4 gap-x-6 py-5 border-solid border-2 border-gray-200">
           <div className="flex min-w-0 gap-x-4 ">
         

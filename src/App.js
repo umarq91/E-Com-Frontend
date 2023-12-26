@@ -22,6 +22,7 @@ import { selectLoggedInUser } from './features/auth/AuthSlice';
 import { useEffect } from 'react';
 import { fetchCartItemsByIdAsync } from './features/Cart/cartSlice';
 import NotFoundPage from './pages/NotFoundPage';
+import OrderSuccessPage from './pages/OrderSuccesPage';
 
 
 
@@ -53,6 +54,8 @@ useEffect(()=>{
 
     <Route path='/checkout' element={<CheckOutPage/>}/> 
     <Route path='/product-detail/:id' element={<ProductDetailPage/>}/> 
+    <Route path='/order-success/:id' element={<OrderSuccessPage/>}/> 
+
 
     <Route path='*' element={<NotFoundPage/>}/> 
 

@@ -2339,7 +2339,7 @@
       "email": "main2@gmail.com",
       "password": "12",
       "id": 1,
-      "adddresses": [
+      "addresses": [
         {
           "name": "Muhammad Umar Qureshi",
           "phone": "03120991676",
@@ -2366,7 +2366,24 @@
       "email": "main3@gmail.com",
       "password": "123",
       "id": 2,
-      "adddresses": []
+      "addresses": []
+    },
+    {
+      "email": "m.umarqureshi091@gmail.com",
+      "password": "123",
+      "addresses": [
+        {
+          "name": "Hammad",
+          "phone": "312999999",
+          "email": "tes",
+          "country": "Pakistan",
+          "address": "TETING PURPOSE",
+          "apartment": "House 1/4",
+          "city": "test",
+          "zipCode": "36888"
+        }
+      ],
+      "id": 3
     }
   ],
   "cart": [
@@ -2411,6 +2428,47 @@
       "quantity": 2,
       "user": 1,
       "id": 4
+    },
+    {
+      "title": "Samsung Galaxy Book",
+      "description": "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched",
+      "price": 1499,
+      "discountPercentage": 4.15,
+      "rating": 4.25,
+      "stock": 50,
+      "brand": "Samsung",
+      "category": "laptops",
+      "thumbnail": "https://i.dummyjson.com/data/products/7/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/7/1.jpg",
+        "https://i.dummyjson.com/data/products/7/2.jpg",
+        "https://i.dummyjson.com/data/products/7/3.jpg",
+        "https://i.dummyjson.com/data/products/7/thumbnail.jpg"
+      ],
+      "quantity": 1,
+      "user": 3,
+      "id": 5
+    },
+    {
+      "title": "Infinix INBOOK",
+      "description": "Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty",
+      "price": 1099,
+      "discountPercentage": 11.83,
+      "rating": 4.54,
+      "stock": 96,
+      "brand": "Infinix",
+      "category": "laptops",
+      "thumbnail": "https://i.dummyjson.com/data/products/9/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/9/1.jpg",
+        "https://i.dummyjson.com/data/products/9/2.png",
+        "https://i.dummyjson.com/data/products/9/3.png",
+        "https://i.dummyjson.com/data/products/9/4.jpg",
+        "https://i.dummyjson.com/data/products/9/thumbnail.jpg"
+      ],
+      "quantity": 2,
+      "user": 3,
+      "id": 6
     }
   ],
   "orders": [
@@ -2500,6 +2558,83 @@
         "zipCode": "25"
       },
       "id": 1
+    },
+    {
+      "items": [
+        {
+          "title": "Samsung Galaxy Book",
+          "description": "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched",
+          "price": 1499,
+          "discountPercentage": 4.15,
+          "rating": 4.25,
+          "stock": 50,
+          "brand": "Samsung",
+          "category": "laptops",
+          "thumbnail": "https://i.dummyjson.com/data/products/7/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/7/1.jpg",
+            "https://i.dummyjson.com/data/products/7/2.jpg",
+            "https://i.dummyjson.com/data/products/7/3.jpg",
+            "https://i.dummyjson.com/data/products/7/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 3,
+          "id": 5
+        },
+        {
+          "title": "Infinix INBOOK",
+          "description": "Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty",
+          "price": 1099,
+          "discountPercentage": 11.83,
+          "rating": 4.54,
+          "stock": 96,
+          "brand": "Infinix",
+          "category": "laptops",
+          "thumbnail": "https://i.dummyjson.com/data/products/9/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/9/1.jpg",
+            "https://i.dummyjson.com/data/products/9/2.png",
+            "https://i.dummyjson.com/data/products/9/3.png",
+            "https://i.dummyjson.com/data/products/9/4.jpg",
+            "https://i.dummyjson.com/data/products/9/thumbnail.jpg"
+          ],
+          "quantity": 2,
+          "user": 3,
+          "id": 6
+        }
+      ],
+      "user": {
+        "email": "m.umarqureshi091@gmail.com",
+        "password": "123",
+        "addresses": [
+          {
+            "name": "Hammad",
+            "phone": "312999999",
+            "email": "tes",
+            "country": "Pakistan",
+            "address": "TETING PURPOSE",
+            "apartment": "House 1/4",
+            "city": "test",
+            "zipCode": "36888"
+          }
+        ],
+        "id": 3
+      },
+      "totalAmount": 3697,
+      "totalItems": 3,
+      "paymentMethod": "card",
+      "selectedAddress": {
+        "name": "Hammad",
+        "phone": "312999999",
+        "email": "tes",
+        "country": "Pakistan",
+        "address": "TETING PURPOSE",
+        "apartment": "House 1/4",
+        "city": "test",
+        "zipCode": "36888"
+      },
+      "status": "pending",
+      "id": 2
     }
   ]
 }

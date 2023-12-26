@@ -14,23 +14,35 @@ import {useForm} from "react-hook-form"
 
 function CheckOutPage() {
 
-  const dispatch = useDispatch()
-  const items = useSelector(selectItems)
-  const totalAmount = items.reduce((amount,item)=> item.price * item.quantity+amount,0)
-  const totalItems = items.reduce((total,item)=> item.quantity+total,0)
-  const user = useSelector(selectLoggedInUser)
-  const {register,handleSubmit,reset , formState: { errors }} = useForm();
+  const dispatch = useDispatch();
+  const items = useSelector(selectItems);
+  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [paymentMethod, setPaymentMethod] = useState("cash");
+
+  const totalAmount = items.reduce((amount, item) => item.price * item.quantity + amount,0);
+  const totalItems = items.reduce((total, item) => item.quantity + total, 0);
+  const user = useSelector(selectLoggedInUser);
+
+  const {register,handleSubmit,reset,formState: { errors },} = useForm();
 
 
 
-  const handleQuantity=(e,product)=>{
-    dispatch(updateCartAsync({...product,quantity: +e.target.value}))
-     }
+  const handleQuantity = (e, product) => {
+    dispatch(updateCartAsync({ ...product, quantity: +e.target.value }));
+  };
    
-     const handleRemove = (productId) =>{
-       dispatch(removefromCartAsync(productId))
-     }
+     const handleRemove = (productId) => {
+       dispatch(removefromCartAsync(productId));
+     };
 
+     const handleAddress = (index) => {
+       // Since e can't pass object in html
+       setSelectedAddress(user.adddresses[index]);
+     };
+
+     const handlePaymentMethod = (e) => {
+       setPaymentMethod(e.target.value);
+     };
 
 
     return (
@@ -238,9 +250,10 @@ function CheckOutPage() {
       {  user?.adddresses.map((address,index) => (
         <li key={index} className="flex justify-between p-4 gap-x-6 py-5 border-solid border-2 border-gray-200">
           <div className="flex min-w-0 gap-x-4 ">
-         { console.log(address)}
+        
           <input
-                           
+                         value={selectedAddress}
+                         onChange={()=>handleAddress(index)} // Since we can't pass object in html 
                             name="address"
                             type="radio"
                             className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
@@ -280,6 +293,9 @@ function CheckOutPage() {
                             id="cash"
                             name="payments"
                             type="radio"
+                            value="cash"
+                            checked={paymentMethod === 'cash'}
+                            onChange={handlePaymentMethod}
                             className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                           />
                           <label
@@ -294,6 +310,9 @@ function CheckOutPage() {
                             id="card"
                             name="payments"
                             type="radio"
+                            checked={paymentMethod === 'card'}
+                            value="card"
+                            onChange={handlePaymentMethod}
                             className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
                           />
                           <label

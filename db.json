@@ -2339,13 +2339,24 @@
       "email": "main2@gmail.com",
       "password": "12",
       "id": 1,
-      "adddresses": [ {
+      "adddresses": [
+        {
           "name": "Muhammad Umar Qureshi",
           "phone": "03120991676",
           "email": "m.umarqureshi091@gmail.com",
           "country": "Pakistan",
           "address": "ouse no 31/6 g11 , islamabad",
           "apartment": "House 1/4",
+          "city": "Peshawar",
+          "zipCode": "25"
+        },
+        {
+          "name": "Muhammad Umar ",
+          "phone": "312433",
+          "email": "test@gmail.com",
+          "country": "Pakistan",
+          "address": "ouse no 31/6 g11 , islamabad",
+          "apartment": "43",
           "city": "Peshawar",
           "zipCode": "25"
         }

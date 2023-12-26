@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { removefromCartAsync, selectItems, updateCartAsync } from "../features/Cart/cartSlice";
 import {selectLoggedInUser, updateUserAsync} from "../features/auth/AuthSlice"
 import {useForm} from "react-hook-form"
+import { createOrderAsync } from "../features/order/orderSlice";
 
 
 
@@ -43,6 +44,12 @@ function CheckOutPage() {
      const handlePaymentMethod = (e) => {
        setPaymentMethod(e.target.value);
      };
+
+     const handleOrder = ()=>{
+     const order = {items , user , totalAmount , totalItems , paymentMethod , selectedAddress}
+       dispatch(createOrderAsync(order))
+      // Todo : after order redirect to order success , remove items from cart  , on server change the number of stocs too..
+     }
 
 
     return (
@@ -414,14 +421,14 @@ function CheckOutPage() {
 
                 <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                 <div className="mt-6">
-                  <Link
-                  to='/checkout'
-                    className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                  <div
+                   onClick={handleOrder}
+                    className="flex items-center cursor-pointer justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                   >
-                    Checkout
-                  </Link>
+                    Order Now
+                  </div>
                 </div>
-                <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+                <div className="mt-6  flex justify-center text-center text-sm text-gray-500">
                   <p>
                     or
                     <Link to='/'>

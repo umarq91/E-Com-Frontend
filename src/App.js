@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectLoggedInUser } from './features/auth/AuthSlice';
 import { useEffect } from 'react';
 import { fetchCartItemsByIdAsync } from './features/Cart/cartSlice';
+import NotFoundPage from './pages/NotFoundPage';
 
 
 
@@ -52,6 +53,9 @@ useEffect(()=>{
 
     <Route path='/checkout' element={<CheckOutPage/>}/> 
     <Route path='/product-detail/:id' element={<ProductDetailPage/>}/> 
+
+    <Route path='*' element={<NotFoundPage/>}/> 
+
  
 
  

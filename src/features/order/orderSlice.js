@@ -14,6 +14,7 @@ export const createOrderAsync = createAsyncThunk(
   }
 );
 
+
 export const orderSlice = createSlice({
   name: 'orders',
   initialState,
@@ -33,6 +34,8 @@ export const orderSlice = createSlice({
         state.status = 'idle';
         state.orders.push(action.payload)
       });
+
+     
   },
 });
 

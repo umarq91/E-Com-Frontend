@@ -2,7 +2,7 @@ import { useState } from "react";
 import Cart from "../features/Cart/Cart";
 import { Link, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { removefromCartAsync, selectItems, updateCartAsync } from "../features/Cart/cartSlice";
+import { emptyCartAsync, removefromCartAsync, selectItems, updateCartAsync } from "../features/Cart/cartSlice";
 import {selectLoggedInUser, updateUserAsync} from "../features/auth/AuthSlice"
 import {useForm} from "react-hook-form"
 import { createOrderAsync, selectCurrentOrder } from "../features/order/orderSlice";
@@ -55,9 +55,10 @@ function CheckOutPage() {
          selectedAddress,
          status:'pending' // others can be dispatched , received 
        };
-       dispatch(createOrderAsync(order));
        // Todo : after order redirect to order success , remove items from cart  , on server change the number of stocs too..
-     };
+       dispatch(createOrderAsync(order));
+   
+      };
 
 
     return (

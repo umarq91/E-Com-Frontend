@@ -58,3 +58,19 @@ export  function removefromCart(itemId) {
   }
   );
 }
+
+
+// Empty All Cart
+export async function emptyCart(userId) {
+  return new Promise(async(resolve) =>{
+
+  const res = await fetchCartItemsById(userId)
+  const items = res.data
+  for(let item of items){
+    await removefromCart(item.id)
+  }
+    resolve({status:"Successfully deleted ! "})
+
+  }
+  );
+}

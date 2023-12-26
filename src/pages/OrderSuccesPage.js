@@ -1,7 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, Navigate, useParams } from 'react-router-dom'
+import { emptyCartAsync } from '../features/Cart/cartSlice'
+import { selectLoggedInUser } from '../features/auth/AuthSlice'
+import { resetOrder } from '../features/order/orderSlice'
 const OrderSuccessPage = () => {
   const params = useParams()
+  const user = useSelector(selectLoggedInUser)
+  const dispatch = useDispatch()
+  useEffect(()=>{
+
+    dispatch(emptyCartAsync(user.id))
+
+    // Reset current Order or it will clash 
+    dispatch(resetOrder())
+  },[])
   return (
     <>
    {!params.id && <Navigate to='/' replace={true}/>}

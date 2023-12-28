@@ -14,7 +14,7 @@ const OrderSuccessPage = () => {
 
     // Reset current Order or it will clash 
     dispatch(resetOrder())
-  },[])
+  },[dispatch,user.id])
   return (
     <>
    {!params.id && <Navigate to='/' replace={true}/>}

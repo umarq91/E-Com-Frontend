@@ -2386,7 +2386,70 @@
       "id": 3
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "title": "iPhone X",
+      "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+      "price": 899,
+      "discountPercentage": 17.94,
+      "rating": 4.44,
+      "stock": 34,
+      "brand": "Apple",
+      "category": "smartphones",
+      "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/2/1.jpg",
+        "https://i.dummyjson.com/data/products/2/2.jpg",
+        "https://i.dummyjson.com/data/products/2/3.jpg",
+        "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+      ],
+      "quantity": 1,
+      "user": 3,
+      "id": 1
+    },
+    {
+      "title": "Brown Perfume",
+      "description": "Royal_Mirage Sport Brown Perfume for Men & Women - 120ml",
+      "price": 40,
+      "discountPercentage": 15.66,
+      "rating": 4,
+      "stock": 52,
+      "brand": "Royal_Mirage",
+      "category": "fragrances",
+      "thumbnail": "https://i.dummyjson.com/data/products/12/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/12/1.jpg",
+        "https://i.dummyjson.com/data/products/12/2.jpg",
+        "https://i.dummyjson.com/data/products/12/3.png",
+        "https://i.dummyjson.com/data/products/12/4.jpg",
+        "https://i.dummyjson.com/data/products/12/thumbnail.jpg"
+      ],
+      "quantity": 1,
+      "user": 3,
+      "id": 2
+    },
+    {
+      "title": "Eau De Perfume Spray",
+      "description": "Genuine  Al-Rehab spray perfume from UAE/Saudi Arabia/Yemen High Quality",
+      "price": 30,
+      "discountPercentage": 10.99,
+      "rating": 4.7,
+      "stock": 105,
+      "brand": "Lord - Al-Rehab",
+      "category": "fragrances",
+      "thumbnail": "https://i.dummyjson.com/data/products/15/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/15/1.jpg",
+        "https://i.dummyjson.com/data/products/15/2.jpg",
+        "https://i.dummyjson.com/data/products/15/3.jpg",
+        "https://i.dummyjson.com/data/products/15/4.jpg",
+        "https://i.dummyjson.com/data/products/15/thumbnail.jpg"
+      ],
+      "quantity": 1,
+      "user": 3,
+      "id": 3
+    }
+  ],
   "orders": [
     {
       "items": [

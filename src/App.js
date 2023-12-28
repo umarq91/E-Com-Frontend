@@ -1,12 +1,10 @@
 
-import { Counter } from './features/counter/Counter';
 
 import HomePage from './pages/Home';
 import {
-  createBrowserRouter,
-  RouterProvider,
+
   Route,
-  Link,
+
   BrowserRouter,
   Routes,
 } from "react-router-dom";
@@ -23,7 +21,7 @@ import { useEffect } from 'react';
 import { fetchCartItemsByIdAsync } from './features/Cart/cartSlice';
 import NotFoundPage from './pages/NotFoundPage';
 import OrderSuccessPage from './pages/OrderSuccesPage';
-import { UserOrders } from './features/user/components/UserOrders';
+import UserOrderPage from './pages/UserOrderPage';
 
 
 
@@ -57,7 +55,7 @@ useEffect(()=>{
     <Route path='/product-detail/:id' element={<ProductDetailPage/>}/> 
     <Route path='/order-success/:id' element={<OrderSuccessPage/>}/> 
 
-    <Route path='/myorders' element={<UserOrders/>}/> 
+    <Route path='/myorders' element={<UserOrderPage/>}/> 
 
 
 

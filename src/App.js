@@ -23,6 +23,7 @@ import { useEffect } from 'react';
 import { fetchCartItemsByIdAsync } from './features/Cart/cartSlice';
 import NotFoundPage from './pages/NotFoundPage';
 import OrderSuccessPage from './pages/OrderSuccesPage';
+import { UserOrders } from './features/user/components/UserOrders';
 
 
 
@@ -55,6 +56,9 @@ useEffect(()=>{
     <Route path='/checkout' element={<CheckOutPage/>}/> 
     <Route path='/product-detail/:id' element={<ProductDetailPage/>}/> 
     <Route path='/order-success/:id' element={<OrderSuccessPage/>}/> 
+
+    <Route path='/myorders' element={<UserOrders/>}/> 
+
 
 
     <Route path='*' element={<NotFoundPage/>}/> 

@@ -2615,6 +2615,63 @@
       "selectedAddress": null,
       "status": "pending",
       "id": 2
+    },
+    {
+      "items": [
+        {
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 4
+        }
+      ],
+      "user": {
+        "email": "main2@gmail.com",
+        "password": "12",
+        "id": 1,
+        "addresses": [
+          {
+            "name": "Muhammad Umar Qureshi",
+            "phone": "03120991676",
+            "email": "m.umarqureshi091@gmail.com",
+            "country": "Pakistan",
+            "address": "ouse no 31/6 g11 , islamabad",
+            "apartment": "House 1/4",
+            "city": "Peshawar",
+            "zipCode": "25"
+          },
+          {
+            "name": "Muhammad Umar ",
+            "phone": "312433",
+            "email": "test@gmail.com",
+            "country": "Pakistan",
+            "address": "ouse no 31/6 g11 , islamabad",
+            "apartment": "43",
+            "city": "Peshawar",
+            "zipCode": "25"
+          }
+        ]
+      },
+      "totalAmount": 899,
+      "totalItems": 1,
+      "paymentMethod": "cash",
+      "selectedAddress": null,
+      "status": "pending",
+      "id": 3
     }
   ]
 }

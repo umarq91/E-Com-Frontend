@@ -2,3 +2,5 @@
 // for now i didnt protect any route but it should be, there are few pages like cart and checkout that should not be open
 without user logged in ..
 i want only logged in user to buy stuff 
+
+// Commit this just because its 7 january and im contiuing this project from user profile  

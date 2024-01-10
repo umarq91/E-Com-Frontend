@@ -14,7 +14,7 @@ import CartPage from './pages/CartPage';
 import CheckOutPage from './pages/CheckOutPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import Navbar from './features/navbar/Navbar';
-import ProtectedRoutes from './app/ProtectedRoutes';
+// import ProtectedRoutes from './app/ProtectedRoutes';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectLoggedInUser } from './features/auth/AuthSlice';
 import { useEffect } from 'react';
@@ -22,6 +22,7 @@ import { fetchCartItemsByIdAsync } from './features/Cart/cartSlice';
 import NotFoundPage from './pages/NotFoundPage';
 import OrderSuccessPage from './pages/OrderSuccesPage';
 import UserOrderPage from './pages/UserOrderPage';
+import UserProfilePage from './pages/UserProfilePage';
 
 
 
@@ -36,7 +37,7 @@ useEffect(()=>{
     console.log(user);
     dispatch(fetchCartItemsByIdAsync(user?.id))
   }
-
+// eslint-disable-next-line
 },[dispatch,user?.id])
 
   return (
@@ -56,6 +57,9 @@ useEffect(()=>{
     <Route path='/order-success/:id' element={<OrderSuccessPage/>}/> 
 
     <Route path='/myorders' element={<UserOrderPage/>}/> 
+    <Route path='/profile' element={<UserProfilePage/>}/> 
+
+    
 
 
 

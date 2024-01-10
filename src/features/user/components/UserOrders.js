@@ -13,8 +13,8 @@ export  function UserOrders() {
   const orders = useSelector(selectUserOrders);
 
   useEffect(() => {
-    dispatch(fetchLoggedInUserOrdersAsync(user.id));
-  }, [user.id]);
+    dispatch(fetchLoggedInUserOrdersAsync(user?.id));
+  }, [user?.id]);
 // Todo  : I can add more info like address , Shipping things etc
   return (
     <div>

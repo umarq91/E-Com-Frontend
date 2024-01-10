@@ -3,9 +3,10 @@ import Cart from "../features/Cart/Cart";
 import { Link, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { emptyCartAsync, removefromCartAsync, selectItems, updateCartAsync } from "../features/Cart/cartSlice";
-import {selectLoggedInUser, updateUserAsync} from "../features/auth/AuthSlice"
+import { updateUserAsync} from "../features/auth/AuthSlice"
 import {useForm} from "react-hook-form"
 import { createOrderAsync, selectCurrentOrder } from "../features/order/orderSlice";
+import { selectUserInfo } from "../features/user/userSlice";
 
 
 
@@ -22,7 +23,7 @@ function CheckOutPage() {
 
   const totalAmount = items.reduce((amount, item) => item.price * item.quantity + amount,0);
   const totalItems = items.reduce((total, item) => item.quantity + total, 0);
-  const user = useSelector(selectLoggedInUser);
+  const user = useSelector(selectUserInfo);
   const {register,handleSubmit,reset,formState: { errors },} = useForm();
 
   const currentOrder = useSelector(selectCurrentOrder)

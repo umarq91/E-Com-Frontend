@@ -9,3 +9,31 @@ export  function fetchLoggedInUserOrders(userId) {
   }
   );
 }
+
+export  function fetchLoggedInUser(userId) {
+  return new Promise(async(resolve) =>{
+
+    const res = await fetch('http://localhost:8080/users/'+userId)
+    const data =await res.json();
+    resolve({data})
+
+  }
+  );
+}
+
+// Update User
+
+export  function updateUser(update) {
+  return new Promise(async(resolve) =>{
+
+    const res = await fetch('http://localhost:8080/users/'+update.id,{
+      method:'PATCH',
+      body:JSON.stringify(update),
+      headers:{'content-type':'application/json'}
+    })
+    const data =await res.json();
+    resolve({data})
+
+  }
+  );
+}

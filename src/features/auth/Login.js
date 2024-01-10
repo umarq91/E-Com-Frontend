@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-import { checkUserAsync, selectLoggedInUser } from './AuthSlice';
+import { checkUserAsync } from './AuthSlice';
+import { selectUserInfo } from '../user/userSlice';
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ export default function Login() {
 
   // error checking in frontend for now  
   const error =  useSelector((state)=>state.auth.error)
-const user = useSelector(selectLoggedInUser)
+const user = useSelector(selectUserInfo)
 
   
   return (

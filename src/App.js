@@ -16,26 +16,27 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import Navbar from './features/navbar/Navbar';
 // import ProtectedRoutes from './app/ProtectedRoutes';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectLoggedInUser } from './features/auth/AuthSlice';
 import { useEffect } from 'react';
 import { fetchCartItemsByIdAsync } from './features/Cart/cartSlice';
 import NotFoundPage from './pages/NotFoundPage';
 import OrderSuccessPage from './pages/OrderSuccesPage';
 import UserOrderPage from './pages/UserOrderPage';
 import UserProfilePage from './pages/UserProfilePage';
+import { fetchLoggedInUserAsync, selectUserInfo } from './features/user/userSlice';
 
 
 
 function App() {
   const dispatch = useDispatch();
 
-  const user = useSelector(selectLoggedInUser)
+  const user = useSelector(selectUserInfo)
 
 useEffect(()=>{
 
   if(user){
     console.log(user);
     dispatch(fetchCartItemsByIdAsync(user?.id))
+    dispatch(fetchLoggedInUserAsync(user.id))
   }
 // eslint-disable-next-line
 },[dispatch,user?.id])
@@ -58,10 +59,6 @@ useEffect(()=>{
 
     <Route path='/myorders' element={<UserOrderPage/>}/> 
     <Route path='/profile' element={<UserProfilePage/>}/> 
-
-    
-
-
 
     <Route path='*' element={<NotFoundPage/>}/> 
 

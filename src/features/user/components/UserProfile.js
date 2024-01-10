@@ -1,10 +1,22 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectLoggedInUser } from "../../auth/AuthSlice";
+import { selectUserInfo } from "../userSlice";
 
 export function UserProfile() {
-  const user = useSelector(selectLoggedInUser);
-  console.log(user);
+  const user = useSelector(selectUserInfo);
+const user2 = useSelector(selectUserInfo)
+
+console.log(user);
+console.log(user2);
+  const handleEdit=()=>{
+
+  }
+  const handleRemove=()=>{
+
+  }
+
+
+
   return (
     <div>
       <div className="">
@@ -31,7 +43,7 @@ export function UserProfile() {
               >
                 <div className="flex min-w-0 gap-x-4 ">
                   <div className="min-w-0 flex-auto">
-                    <p className="text-sm font-bold leading-6 text-black">
+                    <p className="text-sm font-bold  text-black">
                       {address.name}
                     </p>
                     <p className="mt-1 truncate text-xs leading-5 text-gray-500">
@@ -39,18 +51,37 @@ export function UserProfile() {
                     </p>
                   </div>
                 </div>
-                <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                <div className="hidden  sm:flex sm:flex-col sm:items-end">
                   <p className="text-sm font-bold leading-6 text-gray-900">
                     Phone: {address.phone}
                   </p>
-
+                  
                   <p className="mt-1 text-xs leading-5 text-gray-500">
                     {address.city}
                   </p>
+</div>
+<div className="hidden  sm:flex sm:flex-col sm:items-end">
+                    <button
+                                      onClick={(e)=>handleEdit(index)}
+                                        type="button"
+                                        className="font-medium text-indigo-600 hover:text-indigo-500"
+                                      >
+                                        Edit
+                                      </button>
+                   <button
+                                      onClick={(e)=>handleRemove(index)}
+                                        type="button"
+                                        className="font-medium text-indigo-600 hover:text-indigo-500"
+                                      >
+                                        Remove
+                                      </button>
+                                   
                 </div>
               </div>
+
             ))}
           </div>
+
         </div>
       </div>
     </div>

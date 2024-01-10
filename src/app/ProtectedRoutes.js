@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectLoggedInUser } from '../features/auth/AuthSlice';
 import { Navigate } from 'react-router-dom';
+import { selectUserInfo } from '../features/user/userSlice';
 
 const ProtectedRoutes = ({ children }) => {
-    const user = useSelector(selectLoggedInUser);
+    const user = useSelector(selectUserInfo);
 
     // Redirect to '/login' if user is not logged in
     if (!user) {

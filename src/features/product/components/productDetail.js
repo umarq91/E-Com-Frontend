@@ -6,6 +6,7 @@ import { fetchSelectedProductAsync, selectProductbyId } from "../productSlice";
 import { Link, useParams } from "react-router-dom";
 import { addtoCartAsync } from "../../Cart/cartSlice";
 import { selectUserInfo } from "../../user/userSlice";
+import { selectLoggedInUser } from "../../auth/AuthSlice";
 
 const colors = [
   { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
@@ -41,7 +42,10 @@ export default function ProductDetail() {
   const dispatch = useDispatch();
   const product = useSelector(selectProductbyId);
   const params = useParams();
-const user =useSelector(selectUserInfo)
+  const user =useSelector(selectLoggedInUser)
+
+
+
   const breadcrumbs = [
     { id: 1, name: product?.title, category: product?.category, href: "/" },
   ];

@@ -5,9 +5,11 @@ import { emptyCartAsync } from '../features/Cart/cartSlice'
 
 import { resetOrder } from '../features/order/orderSlice'
 import { selectUserInfo } from '../features/user/userSlice'
+import { selectLoggedInUser } from '../features/auth/AuthSlice'
 const OrderSuccessPage = () => {
   const params = useParams()
-  const user = useSelector(selectUserInfo)
+  const user = useSelector(selectLoggedInUser)
+  
   const dispatch = useDispatch()
   useEffect(()=>{
 

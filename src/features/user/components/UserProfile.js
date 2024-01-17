@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { selectUserInfo } from "../userSlice";
 
-export function UserProfile() {
+export function   UserProfile() {
   const user = useSelector(selectUserInfo);
 const user2 = useSelector(selectUserInfo)
 
@@ -24,7 +24,7 @@ console.log(user2);
           <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
             <h1 className="text-4xl font-bold  tracking-tight  text-gray-900">
               {" "}
-              Name : {user.name ? user.name : " Guest User "}{" "}
+              Name : {user.name ? user?.name : " Guest User "}{" "}
             </h1>
 
             <h1 className="text-xl font-semibold tracking-tight  text-gray-900">

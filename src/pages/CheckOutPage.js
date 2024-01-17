@@ -3,7 +3,7 @@ import Cart from "../features/Cart/Cart";
 import { Link, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { emptyCartAsync, removefromCartAsync, selectItems, updateCartAsync } from "../features/Cart/cartSlice";
-import { updateUserAsync} from "../features/auth/AuthSlice"
+import { selectLoggedInUser, updateUserAsync} from "../features/auth/AuthSlice"
 import {useForm} from "react-hook-form"
 import { createOrderAsync, selectCurrentOrder } from "../features/order/orderSlice";
 import { selectUserInfo } from "../features/user/userSlice";

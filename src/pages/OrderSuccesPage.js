@@ -13,11 +13,11 @@ const OrderSuccessPage = () => {
   const dispatch = useDispatch()
   useEffect(()=>{
 
-    dispatch(emptyCartAsync(user.id))
+    dispatch(emptyCartAsync(user?.id))
 
     // Reset current Order or it will clash 
     dispatch(resetOrder())
-  },[dispatch,user.id])
+  },[dispatch,user?.id])
   return (
     <>
    {!params.id && <Navigate to='/' replace={true}/>}

@@ -22,9 +22,8 @@ import NotFoundPage from './pages/NotFoundPage';
 import OrderSuccessPage from './pages/OrderSuccesPage';
 import UserOrderPage from './pages/UserOrderPage';
 import UserProfilePage from './pages/UserProfilePage';
-import { fetchLoggedInUserAsync, selectUserInfo } from './features/user/userSlice';
+import { fetchLoggedInUserAsync } from './features/user/userSlice';
 import { selectLoggedInUser } from './features/auth/AuthSlice';
-
 
 
 function App() {

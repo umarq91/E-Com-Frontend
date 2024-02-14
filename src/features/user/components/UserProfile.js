@@ -4,10 +4,8 @@ import { selectUserInfo } from "../userSlice";
 
 export function   UserProfile() {
   const user = useSelector(selectUserInfo);
-const user2 = useSelector(selectUserInfo)
+console.log(user );
 
-console.log(user);
-console.log(user2);
   const handleEdit=()=>{
 
   }

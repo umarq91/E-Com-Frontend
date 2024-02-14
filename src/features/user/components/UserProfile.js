@@ -1,16 +1,18 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { selectUserInfo } from "../userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUserInfo, updateUserAsync } from "../userSlice";
 
 export function   UserProfile() {
   const user = useSelector(selectUserInfo);
-console.log(user );
-
+  const disptch = useDispatch()
   const handleEdit=()=>{
 
   }
-  const handleRemove=()=>{
-
+  const handleRemove=(e,index)=>{
+    const updatedUser = {...user , addresses:[...user.addresses]}
+    updatedUser.addresses.splice(index,1)
+    console.log(updatedUser);
+      disptch(updateUserAsync(updatedUser))
   }
 
 
@@ -67,7 +69,7 @@ console.log(user );
                                         Edit
                                       </button>
                    <button
-                                      onClick={(e)=>handleRemove(index)}
+                                      onClick={(e)=>handleRemove(e,index)}
                                         type="button"
                                         className="font-medium text-indigo-600 hover:text-indigo-500"
                                       >

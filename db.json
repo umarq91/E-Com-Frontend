@@ -2371,28 +2371,7 @@
     {
       "email": "m.umarqureshi091@gmail.com",
       "password": "123",
-      "addresses": [
-        {
-          "name": "Hammad",
-          "phone": "312999999",
-          "email": "tes",
-          "country": "Pakistan",
-          "address": "TETING PURPOSE",
-          "apartment": "House 1/4",
-          "city": "test",
-          "zipCode": "36888"
-        },
-        {
-          "name": "Muhammad Umar Qureshi",
-          "phone": "03120991676",
-          "email": "m.umarqureshi091@gmail.com",
-          "country": "Pakistan",
-          "address": "Deans Trade Center, Near FC Camp peshawar cantt",
-          "apartment": "hi ",
-          "city": "Peshawar",
-          "zipCode": "25000"
-        }
-      ],
+      "addresses": [],
       "id": 3
     }
   ],
@@ -3091,6 +3070,50 @@
       },
       "status": "pending",
       "id": 9
+    },
+    {
+      "items": [
+        {
+          "title": "Samsung Universe 9",
+          "description": "Samsung's new variant which goes beyond Galaxy to the Universe",
+          "price": 1249,
+          "discountPercentage": 15.46,
+          "rating": 4.09,
+          "stock": 36,
+          "brand": "Samsung",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/3/1.jpg"
+          ],
+          "quantity": 1,
+          "user": 3,
+          "id": 1
+        }
+      ],
+      "user": {
+        "email": "m.umarqureshi091@gmail.com",
+        "password": "123",
+        "addresses": [
+          {
+            "name": "Muhammad Umar Qureshi",
+            "phone": "03120991676",
+            "email": "m.umarqureshi091@gmail.com",
+            "country": "Pakistan",
+            "address": "Deans Trade Center, Near FC Camp peshawar cantt",
+            "apartment": "",
+            "city": "Peshawar",
+            "zipCode": "25000"
+          }
+        ],
+        "id": 3
+      },
+      "totalAmount": 1249,
+      "totalItems": 1,
+      "paymentMethod": "cash",
+      "selectedAddress": null,
+      "status": "pending",
+      "id": 10
     }
   ]
 }

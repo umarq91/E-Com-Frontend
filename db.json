@@ -2371,11 +2371,64 @@
     {
       "email": "m.umarqureshi091@gmail.com",
       "password": "123",
-      "addresses": [],
+      "addresses": [
+        {
+          "name": "Muhammad Hammad",
+          "phone": "03120991676",
+          "email": "m.umarqureshi091@gmail.com",
+          "country": "Pakistan",
+          "address": "Deans Trade Center, Near FC Camp peshawar cantt",
+          "apartment": "hi ",
+          "city": "Peshawar",
+          "zipCode": "25000"
+        },
+        {
+          "name": "hamayaun",
+          "phone": "03120991676",
+          "email": "madasdsad91@gmail.com",
+          "country": "Pakistan",
+          "address": "Deans Trade Center, Near FC Camp peshawar cantt",
+          "apartment": "",
+          "city": "Peshawar",
+          "zipCode": "25000"
+        },
+        {
+          "name": "MuhammadAALI ",
+          "phone": "03120991676",
+          "email": "m.umarqureshi091@gmail.com",
+          "country": "Pakistan",
+          "address": "Deans Trade Center, Near FC Camp peshawar cantt",
+          "apartment": "84345",
+          "city": "Peshawar",
+          "zipCode": "234"
+        }
+      ],
       "id": 3
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "title": "OPPOF19",
+      "description": "OPPO F19 is officially announced on April 2021.",
+      "price": 280,
+      "discountPercentage": 17.91,
+      "rating": 4.3,
+      "stock": 123,
+      "brand": "OPPO",
+      "category": "smartphones",
+      "thumbnail": "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/4/1.jpg",
+        "https://i.dummyjson.com/data/products/4/2.jpg",
+        "https://i.dummyjson.com/data/products/4/3.jpg",
+        "https://i.dummyjson.com/data/products/4/4.jpg",
+        "https://i.dummyjson.com/data/products/4/thumbnail.jpg"
+      ],
+      "quantity": 1,
+      "user": 3,
+      "id": 1
+    }
+  ],
   "orders": [
     {
       "items": [
@@ -3114,6 +3167,72 @@
       "selectedAddress": null,
       "status": "pending",
       "id": 10
+    },
+    {
+      "items": [
+        {
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 899,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 3,
+          "id": 1
+        }
+      ],
+      "user": {
+        "email": "m.umarqureshi091@gmail.com",
+        "password": "123",
+        "addresses": [
+          {
+            "name": "Muhammad Umar ",
+            "phone": "03120991676",
+            "email": "m.umarqureshi091@gmail.com",
+            "country": "Pakistan",
+            "address": "Deans Trade Center, Near FC Camp peshawar cantt",
+            "apartment": "",
+            "city": "Peshawar",
+            "zipCode": "25000"
+          },
+          {
+            "name": "Muhammad Hammad",
+            "phone": "03120991676",
+            "email": "m.umarqureshi091@gmail.com",
+            "country": "Pakistan",
+            "address": "Deans Trade Center, Near FC Camp peshawar cantt",
+            "apartment": "hi ",
+            "city": "Peshawar",
+            "zipCode": "25000"
+          }
+        ],
+        "id": 3
+      },
+      "totalAmount": 899,
+      "totalItems": 1,
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Muhammad Hammad",
+        "phone": "03120991676",
+        "email": "m.umarqureshi091@gmail.com",
+        "country": "Pakistan",
+        "address": "Deans Trade Center, Near FC Camp peshawar cantt",
+        "apartment": "hi ",
+        "city": "Peshawar",
+        "zipCode": "25000"
+      },
+      "status": "pending",
+      "id": 11
     }
   ]
 }
